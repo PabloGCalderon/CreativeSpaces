@@ -44,4 +44,9 @@ public class UserService implements IRegisterUser
     public User editUser(Integer id, User userEdit) {
         return this.userRegister.editUser(id,userEdit);
     }
+
+    public Boolean existID(Integer id)
+    {
+        return this.userRegister.existID(id);
+    }
 }

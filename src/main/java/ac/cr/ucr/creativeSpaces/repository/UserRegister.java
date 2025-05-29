@@ -66,4 +66,17 @@ public class UserRegister  implements IRegisterUser
         }
         return new User();
     }
+
+    public Boolean existID(Integer id)
+    {
+        for (int i= 0; i<this.listUser.size();i++)
+        {
+            if(this.listUser.get(i).getId()==id)
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
 }

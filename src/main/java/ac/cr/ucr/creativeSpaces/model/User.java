@@ -11,7 +11,7 @@ public class User
 
     public User()
     {
-
+        this.id=0;
     }
 
     public User(Integer id, String name, Integer age, String telephone, String email)

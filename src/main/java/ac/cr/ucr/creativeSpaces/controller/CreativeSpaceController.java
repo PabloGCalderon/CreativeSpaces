@@ -27,7 +27,7 @@ public class CreativeSpaceController
         return this.creativeSpaceService.getSpaceByID(id);
     }
 
-    @GetMapping("/type/{type}")
+    @GetMapping("/{type}")
     public CreativeSpace getSpaceByType(@PathVariable String type) {
         return this.creativeSpaceService.getSpaceByType(type);
     }
@@ -37,7 +37,7 @@ public class CreativeSpaceController
         return this.creativeSpaceService.getSpaceByDay(day);
     }
 
-    @GetMapping("/location/{location}")
+    @GetMapping("/{location}")
     public CreativeSpace getSpaceByLocation(@PathVariable String location) {
         return this.creativeSpaceService.getSpaceByLocation(location);
     }
