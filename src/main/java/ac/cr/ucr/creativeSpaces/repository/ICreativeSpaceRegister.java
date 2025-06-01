@@ -15,4 +15,5 @@ public interface ICreativeSpaceRegister
     public CreativeSpace editSpace(Integer id, CreativeSpace creativeSpaceEdit);
     public CreativeSpace deleteSpace(Integer id);
 
+
 }

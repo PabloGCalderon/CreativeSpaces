@@ -97,4 +97,18 @@ public class CreativeSpaceRegister implements ICreativeSpaceRegister
         }
         return new CreativeSpace();
     }
+
+    public Boolean existID(Integer id)
+    {
+        for (int i= 0; i<this.listSpace.size();i++)
+        {
+            if(this.listSpace.get(i).getId()==id)
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 }

@@ -4,49 +4,51 @@ package ac.cr.ucr.creativeSpaces.service;
 import ac.cr.ucr.creativeSpaces.model.User;
 import ac.cr.ucr.creativeSpaces.repository.IRegisterUser;
 import ac.cr.ucr.creativeSpaces.repository.UserRegister;
+import ac.cr.ucr.creativeSpaces.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserService implements IRegisterUser
+public class UserService
 {
 
     @Autowired
-    UserRegister userRegister;
+    private UserRepository userRepository;
+
+    //UserRegister userRegister; --> Esto se sustituyo por el private UserRepository
 
 
-
-
-
-    @Override
-    public User addUser(User user) {
-        return this.userRegister.addUser(user);
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
-    @Override
-    public List<User> getAllUser() {
-        return this.userRegister.getAllUser();
+
+    public List<User> findAllUser() {
+        return userRepository.findAll();
     }
 
-    @Override
-    public User getUser(Integer id) {
-        return this.userRegister.getUser(id);
+
+    public Optional<User> findByIDUser(Integer id) {
+        return userRepository.findById(id);
     }
 
-    @Override
-    public User deleteUser(Integer id) {
-        return this.userRegister.deleteUser(id);
+
+    public void deleteUser(Integer id) {
+        this.userRepository.deleteById(id);
     }
 
-    @Override
+ /*
     public User editUser(Integer id, User userEdit) {
+
         return this.userRegister.editUser(id,userEdit);
     }
 
     public Boolean existID(Integer id)
     {
         return this.userRegister.existID(id);
-    }
+    }\
+    */
 }

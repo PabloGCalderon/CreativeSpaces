@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -27,14 +28,14 @@ public class UserController
     @GetMapping
     public List<User> getAllUser()
     {
-        return this.userService.getAllUser();
+        return this.userService.findAllUser();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUser(@PathVariable Integer id)
     {
-        User user = this.userService.getUser(id);
-        if(user==null || user.getId()==0)
+        Optional<User> user =  this.userService.findByIDUser(id);
+        if(user==null || user.get().getId()==0)
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario con el id " + id + " No fue encontrado");
         }
@@ -54,27 +55,28 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }
 
-        if(this.userService.existID(user.getId()))
+        /*if(this.userService.existID(user.getId()))
         {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el id "+ user.getId()+" ya se encuentra registrado");
-        }
+        }*/
 
-        User userAdd=this.userService.addUser(user);
+        User userAdd=this.userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(userAdd);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id)
     {
-        if(this.userService.existID(id))
+        /*if(this.userService.existID(id))
         {
-            this.userService.deleteUser(id);
-            return ResponseEntity.status(HttpStatus.OK).body("El usuario con el ID "+ id +" fue eliminado correctamente");
-        }
-        return ResponseEntity.status(HttpStatus.CONFLICT).body("El id "+ id+ " no se ha encontrado");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("El id "+ id+ " no se ha encontrado");
+        }*/
+        this.userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
+
+    /*@PutMapping("/{id}")
     public ResponseEntity<?> editUser(@Validated @PathVariable Integer id,@RequestBody User userEdit, BindingResult result)
     {
         if(result.hasErrors())
@@ -99,6 +101,6 @@ public class UserController
             }
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el ID "+id+" no se encuentra registrado");
-    }
+    }*/
 
 }

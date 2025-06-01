@@ -1,7 +1,15 @@
 package ac.cr.ucr.creativeSpaces.model;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_creativeSpace")
 public class CreativeSpace
 {
+    @Id
     private Integer id;
     private Integer day;
     private String type;
@@ -12,7 +20,7 @@ public class CreativeSpace
 
     public CreativeSpace()
     {
-
+        this.id=0;
     }
 
     public CreativeSpace(Integer id, Integer day, String type, String location, String membership, String payment, String review) {
