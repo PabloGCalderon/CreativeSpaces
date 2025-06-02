@@ -9,6 +9,6 @@ public class CreativeSpacesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CreativeSpacesApplication.class, args);
 	}
-
+	//Metodo main donde se ejecuta el proyecto
 }
 

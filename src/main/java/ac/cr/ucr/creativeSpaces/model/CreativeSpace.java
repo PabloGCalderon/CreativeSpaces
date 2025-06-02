@@ -5,12 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "tb_creativeSpace")
+@Entity //Indica que esta clase es una entidad JPA(java persistance api) que sera parte de una base de datos para crear una tabla
+@Table(name = "tb_creativeSpace") //Asigna el nombre una tabla en la base de datos bajo el nombre tb_creativeSpace
 public class CreativeSpace
 {
     @Id
-    private Integer id;
+    private Integer id;//Hace que en la base de datos este atributo sea una clave primaria
+    //El resto de atributos
     private Integer day;
     private String type;
     private String location;
@@ -33,6 +34,7 @@ public class CreativeSpace
         this.review = review;
     }
 
+    //Gets y sets
     public Integer getId() {
         return id;
     }
@@ -88,4 +90,6 @@ public class CreativeSpace
     public void setReview(String review) {
         this.review = review;
     }
+
+    //Clase modelo donde se almacenan los datos
 }

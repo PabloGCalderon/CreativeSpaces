@@ -6,14 +6,16 @@ import java.util.List;
 
 public interface ICreativeSpaceRegister
 {
-    public CreativeSpace addSpace(CreativeSpace creativeSpace);
-    public List<CreativeSpace> getAllSpace();
-    public CreativeSpace getSpaceByID(Integer id);
-    public CreativeSpace getSpaceByType(String type);
-    public CreativeSpace getSpaceByDay(Integer day);
-    public CreativeSpace getSpaceByLocation(String location);
-    public CreativeSpace editSpace(Integer id, CreativeSpace creativeSpaceEdit);
-    public CreativeSpace deleteSpace(Integer id);
+    //Una interfaz con todos los metodos que se trabajan en CreativeSpaceRegister
+
+    public CreativeSpace addSpace(CreativeSpace creativeSpace); //Añade un espacio
+    public List<CreativeSpace> getAllSpace();//Busca todos los espacios
+    public CreativeSpace getSpaceByID(Integer id);//Busca un espacio por id
+    public CreativeSpace getSpaceByType(String type);//Busca los espacios por tipo
+    public CreativeSpace getSpaceByDay(Integer day);//Busca los espacios por dia
+    public CreativeSpace getSpaceByLocation(String location);//Busca los espacios por locacion
+    public CreativeSpace editSpace(Integer id, CreativeSpace creativeSpaceEdit);//Edita un espacio ya existente buscandolo por su id
+    public CreativeSpace deleteSpace(Integer id);//Borra un espacio ya existente buscandolo por su id
 
 
 }
