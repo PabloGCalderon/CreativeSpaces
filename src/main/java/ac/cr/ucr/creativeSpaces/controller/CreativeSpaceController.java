@@ -30,7 +30,7 @@ public class CreativeSpaceController
         return this.creativeSpaceService.findAllSpace();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> getSpaceByID(@PathVariable Integer id) {
         Optional<CreativeSpace> space = creativeSpaceService.findByIdSpace(id);
         if (space.isEmpty()) {
@@ -39,7 +39,7 @@ public class CreativeSpaceController
         return ResponseEntity.ok(space.get());
     }
 
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<?> getSpaceByType(@PathVariable String type) {
         Optional<CreativeSpace> space = creativeSpaceService.findByType(type);
         if (space.isEmpty()) {
@@ -57,7 +57,7 @@ public class CreativeSpaceController
         return ResponseEntity.ok(space.get());
     }
 
-    @GetMapping("/{location}")
+    @GetMapping("/location/{location}")
     public ResponseEntity<?> getSpaceByLocation(@PathVariable String location) {
         Optional<CreativeSpace> space = creativeSpaceService.findByLocation(location);
         if (space.isEmpty()) {
@@ -110,7 +110,7 @@ public class CreativeSpaceController
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El espacio con el ID " + id + " no fue encontrado.");
     }*/
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/idDelete/{id}")
     public ResponseEntity<?> deleteSpace(@PathVariable Integer id) {
     /*
     if (!this.creativeSpaceService.existID(id)) {
