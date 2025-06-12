@@ -35,7 +35,7 @@ public class UserController
     public ResponseEntity<?> getUser(@PathVariable Integer id)
     {
         Optional<User> user =  this.userService.findByIDUser(id);
-        if(user==null || user.get().getId()==0)
+        if(!user.isPresent())
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario con el id " + id + " No fue encontrado");
         }
@@ -55,10 +55,11 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }
 
-        /*if(this.userService.existID(user.getId()))
+        Optional<User> userOp=this.userService.findByIDUser(user.getId());
+        if(userOp.isPresent())
         {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el id "+ user.getId()+" ya se encuentra registrado");
-        }*/
+        }
 
         User userAdd=this.userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(userAdd);
@@ -67,16 +68,17 @@ public class UserController
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id)
     {
-        /*if(this.userService.existID(id))
+        Optional<User> userOp=this.userService.findByIDUser(id);
+        if(!userOp.isPresent())
         {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El id "+ id+ " no se ha encontrado");
-        }*/
+        }
         this.userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
 
-    /*@PutMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> editUser(@Validated @PathVariable Integer id,@RequestBody User userEdit, BindingResult result)
     {
         if(result.hasErrors())
@@ -89,7 +91,8 @@ public class UserController
             return ResponseEntity.badRequest().body(errors);
         }
 
-        if(this.userService.existID(id))
+        Optional<User> userOp=this.userService.findByIDUser(id);
+        if(userOp.isPresent())
         {
             if(id!=userEdit.getId())
             {
@@ -101,6 +104,17 @@ public class UserController
             }
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario con el ID "+id+" no se encuentra registrado");
-    }*/
+    }
+
+    @GetMapping("/age/{age}")
+    public List<User> findByAge(@PathVariable Integer age){
+        return this.userService.findByAge(age);
+    }
+
+    @GetMapping("/name/{name}")
+    public List<User> findByName(@PathVariable String name)
+    {
+        return this.userService.findByName(name);
+    }
 
 }

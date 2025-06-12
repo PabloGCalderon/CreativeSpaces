@@ -40,15 +40,24 @@ public class UserService
         this.userRepository.deleteById(id);
     }
 
- /*
     public User editUser(Integer id, User userEdit) {
-
-        return this.userRegister.editUser(id,userEdit);
+        Optional<User> userOp = this.userRepository.findById(id);
+        if(userOp.isPresent())
+        {
+            User user = userOp.get();
+            user=userEdit;
+            return this.userRepository.save(user);
+        }
+        return null;
     }
 
-    public Boolean existID(Integer id)
+    public List<User> findByAge(Integer age){
+        return this.userRepository.findByAge(age);
+    }
+
+    public List<User> findByName(String name)
     {
-        return this.userRegister.existID(id);
-    }\
-    */
+        return this.userRepository.findByName(name);
+    }
+
 }
