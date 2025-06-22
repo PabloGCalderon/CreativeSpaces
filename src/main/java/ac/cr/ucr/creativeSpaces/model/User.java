@@ -1,9 +1,7 @@
 package ac.cr.ucr.creativeSpaces.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_user")
@@ -11,11 +9,19 @@ public class User
 {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true, length = 10)
     private Integer id;
+    @Column(name = "name", nullable = false, length = 70)
     private String name;
+    @Column(name = "age", nullable = false, length = 10)
     private Integer age;
+    @Column(name = "telephone", nullable = false, length = 20)
     private String telephone;
+    @Column(name = "email", nullable = false, length = 150)
     private String email;
+    @Column(name = "password", nullable = false, length = 150)
+    private String password;
 
 
     public User()
@@ -23,13 +29,13 @@ public class User
         this.id=0;
     }
 
-    public User(Integer id, String name, Integer age, String telephone, String email)
-    {
+    public User(Integer id, String name, Integer age, String telephone, String email, String password) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.telephone = telephone;
         this.email = email;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -72,5 +78,11 @@ public class User
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

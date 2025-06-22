@@ -1,6 +1,7 @@
 package ac.cr.ucr.creativeSpaces.controller;
 
 
+import ac.cr.ucr.creativeSpaces.model.DTO.LoginDTO;
 import ac.cr.ucr.creativeSpaces.model.User;
 import ac.cr.ucr.creativeSpaces.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,6 +116,20 @@ public class UserController
     public List<User> findByName(@PathVariable String name)
     {
         return this.userService.findByName(name);
+    }
+
+
+    @PostMapping
+    public ResponseEntity<?> loginByEmail(@RequestBody LoginDTO loginDTO)
+    {
+        Optional<User> userOp=this.userService.loginByEmail(loginDTO.getEmail(),loginDTO.getPassword());
+        if(userOp.isPresent())
+        {
+            return ResponseEntity.ok("Bienvenido al sistema de reservacion de espacios creativos");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectos");
+        }
     }
 
 }

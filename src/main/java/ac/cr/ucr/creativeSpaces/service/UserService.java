@@ -60,4 +60,9 @@ public class UserService
         return this.userRepository.findByName(name);
     }
 
+    public Optional<User> loginByEmail(String email, String password)
+    {
+        return this.userRepository.loginByEmail(email,password);
+    }
+
 }
