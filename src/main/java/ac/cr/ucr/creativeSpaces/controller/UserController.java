@@ -119,7 +119,7 @@ public class UserController
     }
 
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<?> loginByEmail(@RequestBody LoginDTO loginDTO)
     {
         Optional<User> userOp=this.userService.loginByEmail(loginDTO.getEmail(),loginDTO.getPassword());
