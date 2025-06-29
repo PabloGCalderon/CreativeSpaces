@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController//Indica que la clase es un controlador
 @RequestMapping("/api/cs")//Indica una ruta generica para los endpoints
 public class CreativeSpaceController

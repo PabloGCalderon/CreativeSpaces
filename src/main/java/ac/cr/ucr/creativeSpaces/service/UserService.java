@@ -62,7 +62,7 @@ public class UserService
 
     public Optional<User> loginByEmail(String email, String password)
     {
-        return this.userRepository.loginByEmail(email,password);
+        return this.userRepository.findByEmailAndPassword(email,password);
     }
 
 }
