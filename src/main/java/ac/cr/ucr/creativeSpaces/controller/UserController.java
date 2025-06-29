@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@CrossOrigin("*")
+@CrossOrigin("https://keen-twilight-92ed47.netlify.app/")
 @RestController
 @RequestMapping("/api/users")
 public class UserController
