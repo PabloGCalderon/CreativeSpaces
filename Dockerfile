@@ -8,12 +8,16 @@ WORKDIR /app
 # Copy the application code
 COPY . .
 
+
+RUN chmod +x mvnw
+
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
 
 # Stage 2: Run the application
 FROM eclipse-temurin:21-jre
+
 
 # Set the working directory
 WORKDIR /app
